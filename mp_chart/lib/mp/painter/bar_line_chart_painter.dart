@@ -33,8 +33,8 @@ import 'package:mp_chart/mp/painter/painter.dart';
 
 abstract class BarLineChartBasePainter<
         T extends BarLineScatterCandleBubbleData<
-            IBarLineScatterCandleBubbleDataSet<Entry?>>?> extends ChartPainter<T>
-    implements BarLineScatterCandleBubbleDataProvider {
+            IBarLineScatterCandleBubbleDataSet<Entry?>>?>
+    extends ChartPainter<T> implements BarLineScatterCandleBubbleDataProvider {
   final ChartTransListener? _chartTransListener;
 
   /// the maximum number of entries to which values will be drawn
@@ -140,56 +140,56 @@ abstract class BarLineChartBasePainter<
 
   bool get doubleTapToZoomEnabled => _doubleTapToZoomEnabled;
 
-  BarLineChartBasePainter(
-      T data,
-      Animator? animator,
-      ViewPortHandler? viewPortHandler,
-      double? maxHighlightDistance,
-      bool highLightPerTapEnabled,
-      double extraLeftOffset,
-      double extraTopOffset,
-      double extraRightOffset,
-      double extraBottomOffset,
-      IMarker? marker,
-      Description? desc,
-      bool drawMarkers,
-      Color? infoBgColor,
-      TextPainter? infoPainter,
-      TextPainter? descPainter,
-      XAxis? xAxis,
-      Legend? legend,
-      LegendRenderer? legendRenderer,
-      DataRendererSettingFunction? rendererSettingFunction,
-      OnChartValueSelectedListener? selectedListener,
-      int maxVisibleCount,
-      bool autoScaleMinMaxEnabled,
-      bool pinchZoomEnabled,
-      bool doubleTapToZoomEnabled,
-      bool highlightPerDragEnabled,
-      bool dragXEnabled,
-      bool dragYEnabled,
-      bool scaleXEnabled,
-      bool scaleYEnabled,
-      Paint? gridBackgroundPaint,
-      Paint? borderPaint,
-      bool drawGridBackground,
-      bool drawBorders,
-      bool clipValuesToContent,
-      double minOffset,
-      bool keepPositionOnRotation,
-      OnDrawListener? drawListener,
-      YAxis? axisLeft,
-      YAxis? axisRight,
-      YAxisRenderer? axisRendererLeft,
-      YAxisRenderer? axisRendererRight,
-      Transformer? leftAxisTransformer,
-      Transformer? rightAxisTransformer,
-      XAxisRenderer? xAxisRenderer,
-      Matrix4? zoomMatrixBuffer,
-      bool customViewPortEnabled,
-      Paint? backgroundPaint,
-      ChartTransListener? chartTransListener)
-      : _keepPositionOnRotation = keepPositionOnRotation,
+  BarLineChartBasePainter({
+    required T data,
+    Animator? animator,
+    ViewPortHandler? viewPortHandler,
+    double? maxHighlightDistance,
+    bool highLightPerTapEnabled = false,
+    double extraLeftOffset = 0,
+    double extraTopOffset = 0,
+    double extraRightOffset = 0,
+    double extraBottomOffset = 0,
+    IMarker? marker,
+    Description? desc,
+    bool drawMarkers = false,
+    Color? infoBgColor,
+    TextPainter? infoPainter,
+    TextPainter? descPainter,
+    XAxis? xAxis,
+    Legend? legend,
+    LegendRenderer? legendRenderer,
+    DataRendererSettingFunction? rendererSettingFunction,
+    OnChartValueSelectedListener? selectedListener,
+    required int maxVisibleCount,
+    bool autoScaleMinMaxEnabled = true,
+    bool pinchZoomEnabled = true,
+    bool doubleTapToZoomEnabled = true,
+    bool highlightPerDragEnabled = false,
+    bool dragXEnabled = true,
+    bool dragYEnabled = true,
+    bool scaleXEnabled = true,
+    bool scaleYEnabled = true,
+    Paint? gridBackgroundPaint,
+    Paint? borderPaint,
+    bool drawGridBackground = false,
+    bool drawBorders = false,
+    bool clipValuesToContent = true,
+    required double minOffset,
+    bool keepPositionOnRotation = false,
+    OnDrawListener? drawListener,
+    YAxis? axisLeft,
+    YAxis? axisRight,
+    YAxisRenderer? axisRendererLeft,
+    YAxisRenderer? axisRendererRight,
+    Transformer? leftAxisTransformer,
+    Transformer? rightAxisTransformer,
+    XAxisRenderer? xAxisRenderer,
+    Matrix4? zoomMatrixBuffer,
+    bool customViewPortEnabled = false,
+    Paint? backgroundPaint,
+    ChartTransListener? chartTransListener,
+  })  : _keepPositionOnRotation = keepPositionOnRotation,
         _leftAxisTransformer = leftAxisTransformer,
         _rightAxisTransformer = rightAxisTransformer,
         _zoomMatrixBuffer = zoomMatrixBuffer,
@@ -218,26 +218,27 @@ abstract class BarLineChartBasePainter<
         _backgroundPaint = backgroundPaint,
         _chartTransListener = chartTransListener,
         super(
-            data,
-            animator,
-            viewPortHandler,
-            maxHighlightDistance,
-            highLightPerTapEnabled,
-            extraLeftOffset,
-            extraTopOffset,
-            extraRightOffset,
-            extraBottomOffset,
-            marker,
-            desc,
-            drawMarkers,
-            infoBgColor,
-            infoPainter,
-            descPainter,
-            xAxis,
-            legend,
-            legendRenderer,
-            rendererSettingFunction,
-            selectedListener);
+          data: data,
+          animator: animator,
+          viewPortHandler: viewPortHandler,
+          maxHighlightDistance: maxHighlightDistance,
+          highLightPerTapEnabled: highLightPerTapEnabled,
+          extraLeftOffset: extraLeftOffset,
+          extraTopOffset: extraTopOffset,
+          extraRightOffset: extraRightOffset,
+          extraBottomOffset: extraBottomOffset,
+          marker: marker,
+          desc: desc,
+          drawMarkers: drawMarkers,
+          infoBgColor: infoBgColor,
+          infoPainter: infoPainter,
+          descPainter: descPainter,
+          xAxis: xAxis,
+          legend: legend,
+          legendRenderer: legendRenderer,
+          rendererSettingFunction: rendererSettingFunction,
+          selectedListener: selectedListener,
+        );
 
   @override
   void initDefaultWithData() {
@@ -284,7 +285,8 @@ abstract class BarLineChartBasePainter<
 
     renderer!.drawData(canvas);
 
-    if (!xAxis!.drawGridLinesBehindData) _xAxisRenderer!.renderGridLines(canvas);
+    if (!xAxis!.drawGridLinesBehindData)
+      _xAxisRenderer!.renderGridLines(canvas);
 
     if (!_axisLeft!.drawGridLinesBehindData)
       _axisRendererLeft!.renderGridLines(canvas);
@@ -489,12 +491,13 @@ abstract class BarLineChartBasePainter<
     }
 
     if (_axisRight!.enabled) {
-      _axisRendererRight!.computeAxis(
-          _axisRight!.axisMinimum, _axisRight!.axisMaximum, _axisRight!.inverted);
+      _axisRendererRight!.computeAxis(_axisRight!.axisMinimum,
+          _axisRight!.axisMaximum, _axisRight!.inverted);
     }
 
     if (xAxis!.enabled) {
-      _xAxisRenderer!.computeAxis(xAxis!.axisMinimum, xAxis!.axisMaximum, false);
+      _xAxisRenderer!
+          .computeAxis(xAxis!.axisMinimum, xAxis!.axisMaximum, false);
     }
   }
 
@@ -521,8 +524,8 @@ abstract class BarLineChartBasePainter<
       }
 
       if (_axisRight!.needsOffset()) {
-        offsetRight +=
-            _axisRight!.getRequiredWidthSpace(_axisRendererRight!.axisLabelPaint);
+        offsetRight += _axisRight!
+            .getRequiredWidthSpace(_axisRendererRight!.axisLabelPaint);
       }
 
       if (xAxis!.enabled && xAxis!.drawLabels) {
@@ -881,7 +884,8 @@ abstract class BarLineChartBasePainter<
 
   @override
   BarLineScatterCandleBubbleData? getData() {
-    return super.getData() as BarLineScatterCandleBubbleData<IBarLineScatterCandleBubbleDataSet<Entry?>>?;
+    return super.getData() as BarLineScatterCandleBubbleData<
+        IBarLineScatterCandleBubbleDataSet<Entry?>>?;
   }
 
   /// Returns true if either the left or the right or both axes are inverted.
@@ -893,25 +897,25 @@ abstract class BarLineChartBasePainter<
     return false;
   }
 
-  bool updateEntry(int index, Entry entry, int dataSetIndex){
+  bool updateEntry(int index, Entry entry, int dataSetIndex) {
     var dataSet = getData()!.getDataSetByIndex(dataSetIndex);
-    if(dataSet == null) {
+    if (dataSet == null) {
       return false;
     }
 
     return dataSet.updateEntryByIndex(index, entry);
   }
 
-  void addEntryByIndex(int index, Entry entry, int dataSetIndex){
+  void addEntryByIndex(int index, Entry entry, int dataSetIndex) {
     var dataSet = getData()!.getDataSetByIndex(dataSetIndex);
-    if(dataSet != null){
+    if (dataSet != null) {
       dataSet.addEntryByIndex(index, entry);
     }
   }
 
-  void addEntry(Entry entry, int dataSetIndex){
+  void addEntry(Entry entry, int dataSetIndex) {
     var dataSet = getData()!.getDataSetByIndex(dataSetIndex);
-    if(dataSet != null) {
+    if (dataSet != null) {
       addEntryByIndex(dataSet.getEntryCount(), entry, dataSetIndex);
     }
   }

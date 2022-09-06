@@ -1,4 +1,3 @@
-
 import 'package:flutter/painting.dart';
 import 'package:mp_chart/mp/core/axis/y_axis.dart';
 import 'package:mp_chart/mp/core/enums/axis_dependency.dart';
@@ -19,7 +18,8 @@ class YAxisRenderer extends AxisRenderer {
 
   Paint? _zeroLinePaint;
 
-  YAxisRenderer(ViewPortHandler? viewPortHandler, YAxis? yAxis, Transformer? trans)
+  YAxisRenderer(
+      ViewPortHandler? viewPortHandler, YAxis? yAxis, Transformer? trans)
       : super(viewPortHandler, trans, yAxis) {
     this._yAxis = yAxis;
 
@@ -122,11 +122,14 @@ class YAxisRenderer extends AxisRenderer {
     YAxisLabelPosition position,
   ) {
     final int from = _yAxis!.drawBottomYLabelEntry ? 0 : 1;
-    final int to =
-        _yAxis!.drawTopYLabelEntry ? _yAxis!.entryCount : (_yAxis!.entryCount - 1);
+    final int to = _yAxis!.drawTopYLabelEntry
+        ? _yAxis!.entryCount
+        : (_yAxis!.entryCount - 1);
 
     // draw
     for (int i = from; i < to; i++) {
+      if (positions[i * 2 + 1]?.isNaN ?? true) return;
+
       String text = _yAxis!.getFormattedLabel(i);
 
       axisLabelPaint!.text =

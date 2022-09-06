@@ -65,10 +65,10 @@ class PieChartPainter extends PieRadarChartPainter<PieData?> {
   Rect _circleBox = Rect.zero;
 
   /// array that holds the width of each pie-slice in degrees
-  List<double?> _drawAngles = []..length =1;
+  List<double?> _drawAngles = []..length = 1;
 
   /// array that holds the absolute angle in degrees of each slice
-  List<double?> _absoluteAngles = []..length =1;
+  List<double?> _absoluteAngles = []..length = 1;
 
   /// Hole color
   Color _holeColor;
@@ -76,63 +76,66 @@ class PieChartPainter extends PieRadarChartPainter<PieData?> {
   MPPointF _centerTextOffset;
 
   TypeFace? _centerTextTypeface;
+
   TypeFace? get centerTextTypeface => _centerTextTypeface;
 
   /// Center text color
   final Color? _centerTextColor;
+
   Color? get centerTextColor => _centerTextColor;
 
   /// Center text font size
   final double? _centerTextSize;
+
   double? get centerTextSize => _centerTextSize;
   TypeFace? _entryLabelTypeface;
 
   PieChartPainter(
-      PieData? data,
-      Animator? animator,
-      ViewPortHandler? viewPortHandler,
-      double? maxHighlightDistance,
-      bool highLightPerTapEnabled,
-      double extraLeftOffset,
-      double extraTopOffset,
-      double extraRightOffset,
-      double extraBottomOffset,
-      IMarker? marker,
-      Description? desc,
-      bool drawMarkers,
-      Color? infoBgColor,
-      TextPainter? infoPainter,
-      TextPainter? descPainter,
-      XAxis? xAxis,
-      Legend? legend,
-      LegendRenderer? legendRenderer,
-      DataRendererSettingFunction? rendererSettingFunction,
-      OnChartValueSelectedListener? selectedListener,
-      double rotationAngle,
-      double? rawRotationAngle,
-      bool rotateEnabled,
-      double minOffset,
-      bool drawEntryLabels,
-      bool drawHole,
-      bool drawSlicesUnderHole,
-      bool usePercentValues,
-      bool drawRoundedSlices,
-      String centerText,
-      double centerTextOffsetX,
-      double centerTextOffsetY,
-      TypeFace? entryLabelTypeface,
-      TypeFace? centerTextTypeface,
-      double holeRadiusPercent,
-      double transparentCircleRadiusPercent,
-      bool drawCenterText,
-      double centerTextRadiusPercent,
-      double maxAngle,
-      double minAngleForSlices,
-      Color? backgroundColor,
-      Color holeColor,
-      Color? centerTextColor,
-      double? centerTextSize)
-      : _drawEntryLabels = drawEntryLabels,
+    PieData? data,
+    Animator? animator,
+    ViewPortHandler? viewPortHandler,
+    double? maxHighlightDistance,
+    bool highLightPerTapEnabled,
+    double extraLeftOffset,
+    double extraTopOffset,
+    double extraRightOffset,
+    double extraBottomOffset,
+    IMarker? marker,
+    Description? desc,
+    bool drawMarkers,
+    Color? infoBgColor,
+    TextPainter? infoPainter,
+    TextPainter? descPainter,
+    XAxis? xAxis,
+    Legend? legend,
+    LegendRenderer? legendRenderer,
+    DataRendererSettingFunction? rendererSettingFunction,
+    OnChartValueSelectedListener? selectedListener,
+    double rotationAngle,
+    double? rawRotationAngle,
+    bool rotateEnabled,
+    double minOffset,
+    bool drawEntryLabels,
+    bool drawHole,
+    bool drawSlicesUnderHole,
+    bool usePercentValues,
+    bool drawRoundedSlices,
+    String centerText,
+    double centerTextOffsetX,
+    double centerTextOffsetY,
+    TypeFace? entryLabelTypeface,
+    TypeFace? centerTextTypeface,
+    double holeRadiusPercent,
+    double transparentCircleRadiusPercent,
+    bool drawCenterText,
+    double centerTextRadiusPercent,
+    double maxAngle,
+    double minAngleForSlices,
+    Color? backgroundColor,
+    Color holeColor,
+    Color? centerTextColor,
+    double? centerTextSize,
+  )   : _drawEntryLabels = drawEntryLabels,
         _drawHole = drawHole,
         _drawSlicesUnderHole = drawSlicesUnderHole,
         _usePercentValues = usePercentValues,
@@ -152,31 +155,32 @@ class PieChartPainter extends PieRadarChartPainter<PieData?> {
         _centerTextColor = centerTextColor,
         _centerTextSize = centerTextSize,
         super(
-            data,
-            animator,
-            viewPortHandler,
-            maxHighlightDistance,
-            highLightPerTapEnabled,
-            extraLeftOffset,
-            extraTopOffset,
-            extraRightOffset,
-            extraBottomOffset,
-            marker,
-            desc,
-            drawMarkers,
-            infoBgColor,
-            infoPainter,
-            descPainter,
-            xAxis,
-            legend,
-            legendRenderer,
-            rendererSettingFunction,
-            selectedListener,
-            rotationAngle,
-            rawRotationAngle,
-            rotateEnabled,
-            minOffset,
-            backgroundColor);
+          data: data,
+          animator: animator,
+          viewPortHandler: viewPortHandler,
+          maxHighlightDistance: maxHighlightDistance,
+          highLightPerTapEnabled: highLightPerTapEnabled,
+          extraLeftOffset: extraLeftOffset,
+          extraTopOffset: extraTopOffset,
+          extraRightOffset: extraRightOffset,
+          extraBottomOffset: extraBottomOffset,
+          marker: marker,
+          desc: desc,
+          drawMarkers: drawMarkers,
+          infoBgColor: infoBgColor,
+          infoPainter: infoPainter,
+          descPainter: descPainter,
+          xAxis: xAxis,
+          legend: legend,
+          legendRenderer: legendRenderer,
+          rendererSettingFunction: rendererSettingFunction,
+          selectedListener: selectedListener,
+          rotationAngle: rotationAngle,
+          rawRotationAngle: rawRotationAngle,
+          rotateEnabled: rotateEnabled,
+          minOffset: minOffset,
+          backgroundColor: backgroundColor,
+        );
 
   @override
   void initDefaultWithData() {
@@ -268,7 +272,7 @@ class PieChartPainter extends PieRadarChartPainter<PieData?> {
         center.y!);
 
     MPPointF.recycleInstance(center);
-    return <double>[x,y];
+    return <double>[x, y];
   }
 
   /// calculates the needed angles for the chart slices
@@ -336,7 +340,8 @@ class PieChartPainter extends PieRadarChartPainter<PieData?> {
       // Correct bigger slices by relatively reducing their angles based on the total angle needed to subtract
       // This requires that `entryCount * _minAngleForSlices <= _maxAngle` be true to properly work!
       for (int i = 0; i < entryCount; i++) {
-        minAngles[i] = minAngles[i]! - ( (minAngles[i]! - _minAngleForSlices) / diff * offset);
+        minAngles[i] = minAngles[i]! -
+            ((minAngles[i]! - _minAngleForSlices) / diff * offset);
         if (i == 0) {
           _absoluteAngles[0] = minAngles[0];
         } else {

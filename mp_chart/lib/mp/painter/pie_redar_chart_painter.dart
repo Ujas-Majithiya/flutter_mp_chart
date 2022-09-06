@@ -38,58 +38,59 @@ abstract class PieRadarChartPainter<T extends ChartData<IDataSet<Entry?>>?>
 
   Color? _backgroundColor;
 
-  PieRadarChartPainter(
-      T data,
-      Animator? animator,
-      ViewPortHandler? viewPortHandler,
-      double? maxHighlightDistance,
-      bool highLightPerTapEnabled,
-      double extraLeftOffset,
-      double extraTopOffset,
-      double extraRightOffset,
-      double extraBottomOffset,
-      IMarker? marker,
-      Description? desc,
-      bool drawMarkers,
-      Color? infoBgColor,
-      TextPainter? infoPainter,
-      TextPainter? descPainter,
-      XAxis? xAxis,
-      Legend? legend,
-      LegendRenderer? legendRenderer,
-      DataRendererSettingFunction? rendererSettingFunction,
-      OnChartValueSelectedListener? selectedListener,
-      double rotationAngle,
-      double? rawRotationAngle,
-      bool rotateEnabled,
-      double minOffset,
-      Color? backgroundColor)
-      : _rotationAngle = rotationAngle,
+  PieRadarChartPainter({
+    required T data,
+    Animator? animator,
+    ViewPortHandler? viewPortHandler,
+    double? maxHighlightDistance,
+    bool highLightPerTapEnabled = false,
+    double extraLeftOffset = 0,
+    double extraTopOffset = 0,
+    double extraRightOffset = 0,
+    double extraBottomOffset = 0,
+    IMarker? marker,
+    Description? desc,
+    bool drawMarkers = false,
+    Color? infoBgColor,
+    TextPainter? infoPainter,
+    TextPainter? descPainter,
+    XAxis? xAxis,
+    Legend? legend,
+    LegendRenderer? legendRenderer,
+    DataRendererSettingFunction? rendererSettingFunction,
+    OnChartValueSelectedListener? selectedListener,
+    required double rotationAngle,
+    double? rawRotationAngle,
+    bool rotateEnabled = true,
+    required double minOffset,
+    Color? backgroundColor,
+  })  : _rotationAngle = rotationAngle,
         _rawRotationAngle = rawRotationAngle,
         _rotateEnabled = rotateEnabled,
         _minOffset = minOffset,
         _backgroundColor = backgroundColor,
         super(
-            data,
-            animator,
-            viewPortHandler,
-            maxHighlightDistance,
-            highLightPerTapEnabled,
-            extraLeftOffset,
-            extraTopOffset,
-            extraRightOffset,
-            extraBottomOffset,
-            marker,
-            desc,
-            drawMarkers,
-            infoBgColor,
-            infoPainter,
-            descPainter,
-            xAxis,
-            legend,
-            legendRenderer,
-            rendererSettingFunction,
-            selectedListener);
+          data: data,
+          animator: animator,
+          viewPortHandler: viewPortHandler,
+          maxHighlightDistance: maxHighlightDistance,
+          highLightPerTapEnabled: highLightPerTapEnabled,
+          extraLeftOffset: extraLeftOffset,
+          extraTopOffset: extraTopOffset,
+          extraRightOffset: extraRightOffset,
+          extraBottomOffset: extraBottomOffset,
+          marker: marker,
+          desc: desc,
+          drawMarkers: drawMarkers,
+          infoBgColor: infoBgColor,
+          infoPainter: infoPainter,
+          descPainter: descPainter,
+          xAxis: xAxis,
+          legend: legend,
+          legendRenderer: legendRenderer,
+          rendererSettingFunction: rendererSettingFunction,
+          selectedListener: selectedListener,
+        );
 
   @override
   void calcMinMax() {
@@ -126,7 +127,8 @@ abstract class PieRadarChartPainter<T extends ChartData<IDataSet<Entry?>>?>
             double xLegendOffset = 0.0;
 
             if (legend!.horizontalAlignment == LegendHorizontalAlignment.LEFT ||
-                legend!.horizontalAlignment == LegendHorizontalAlignment.RIGHT) {
+                legend!.horizontalAlignment ==
+                    LegendHorizontalAlignment.RIGHT) {
               if (legend!.verticalAlignment == LegendVerticalAlignment.CENTER) {
                 // this is the space between the legend and the chart
                 final double spacing = Utils.convertDpToPixel(13)!;
@@ -256,8 +258,8 @@ abstract class PieRadarChartPainter<T extends ChartData<IDataSet<Entry?>>?>
     double offsetBottom =
         max(minOffset, max(getRequiredBaseOffset()!, legendBottom));
 
-    viewPortHandler!.restrainViewPort(
-        offsetLeft, offsetTop, offsetRight, offsetBottom);
+    viewPortHandler!
+        .restrainViewPort(offsetLeft, offsetTop, offsetRight, offsetBottom);
   }
 
   /// returns the angle relative to the chart center for the given point on the

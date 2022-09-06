@@ -83,58 +83,59 @@ class HorizontalBarChartPainter extends BarChartPainter {
       bool fitBars,
       ChartTransListener? chartTransListener)
       : super(
-            data,
-            animator,
-            viewPortHandler,
-            maxHighlightDistance,
-            highLightPerTapEnabled,
-            extraLeftOffset,
-            extraTopOffset,
-            extraRightOffset,
-            extraBottomOffset,
-            marker,
-            desc,
-            drawMarkers,
-            infoBgColor,
-            infoPainter,
-            descPainter,
-            xAxis,
-            legend,
-            legendRenderer,
-            rendererSettingFunction,
-            selectedListener,
-            maxVisibleCount,
-            autoScaleMinMaxEnabled,
-            pinchZoomEnabled,
-            doubleTapToZoomEnabled,
-            highlightPerDragEnabled,
-            dragXEnabled,
-            dragYEnabled,
-            scaleXEnabled,
-            scaleYEnabled,
-            gridBackgroundPaint,
-            backgroundPaint,
-            borderPaint,
-            drawGridBackground,
-            drawBorders,
-            clipValuesToContent,
-            minOffset,
-            keepPositionOnRotation,
-            drawListener,
-            axisLeft,
-            axisRight,
-            axisRendererLeft,
-            axisRendererRight,
-            leftAxisTransformer,
-            rightAxisTransformer,
-            xAxisRenderer,
-            zoomMatrixBuffer,
-            customViewPortEnabled,
-            highlightFullBarEnabled,
-            drawValueAboveBar,
-            drawBarShadow,
-            fitBars,
-            chartTransListener);
+          data: data,
+          animator: animator,
+          viewPortHandler: viewPortHandler,
+          maxHighlightDistance: maxHighlightDistance,
+          highLightPerTapEnabled: highLightPerTapEnabled,
+          extraLeftOffset: extraLeftOffset,
+          extraTopOffset: extraTopOffset,
+          extraRightOffset: extraRightOffset,
+          extraBottomOffset: extraBottomOffset,
+          marker: marker,
+          desc: desc,
+          drawMarkers: drawMarkers,
+          infoBgColor: infoBgColor,
+          infoPainter: infoPainter,
+          descPainter: descPainter,
+          xAxis: xAxis,
+          legend: legend,
+          legendRenderer: legendRenderer,
+          rendererSettingFunction: rendererSettingFunction,
+          selectedListener: selectedListener,
+          maxVisibleCount: maxVisibleCount,
+          autoScaleMinMaxEnabled: autoScaleMinMaxEnabled,
+          pinchZoomEnabled: pinchZoomEnabled,
+          doubleTapToZoomEnabled: doubleTapToZoomEnabled,
+          highlightPerDragEnabled: highlightPerDragEnabled,
+          dragXEnabled: dragXEnabled,
+          dragYEnabled: dragYEnabled,
+          scaleXEnabled: scaleXEnabled,
+          scaleYEnabled: scaleYEnabled,
+          gridBackgroundPaint: gridBackgroundPaint,
+          backgroundPaint: backgroundPaint,
+          borderPaint: borderPaint,
+          drawGridBackground: drawGridBackground,
+          drawBorders: drawBorders,
+          clipValuesToContent: clipValuesToContent,
+          minOffset: minOffset,
+          keepPositionOnRotation: keepPositionOnRotation,
+          drawListener: drawListener,
+          axisLeft: axisLeft,
+          axisRight: axisRight,
+          axisRendererLeft: axisRendererLeft,
+          axisRendererRight: axisRendererRight,
+          leftAxisTransformer: leftAxisTransformer,
+          rightAxisTransformer: rightAxisTransformer,
+          xAxisRenderer: xAxisRenderer,
+          zoomMatrixBuffer: zoomMatrixBuffer,
+          customViewPortEnabled: customViewPortEnabled,
+          highlightFullBarEnabled: highlightFullBarEnabled,
+          drawValueAboveBar: drawValueAboveBar,
+          drawBarShadow: drawBarShadow,
+          fitBars: fitBars,
+          chartTransListener: chartTransListener,
+        );
 
   @override
   void initDefaultWithData() {
@@ -212,7 +213,10 @@ class HorizontalBarChartPainter extends BarChartPainter {
 
   @override
   List<double?> getMarkerPosition(Highlight high) {
-    return <double?>[high.drawY,high.drawX];//new List()..add(high.drawY)..add(high.drawX);
+    return <double?>[
+      high.drawY,
+      high.drawX
+    ]; //new List()..add(high.drawY)..add(high.drawX);
   }
 
   @override
@@ -250,8 +254,6 @@ class HorizontalBarChartPainter extends BarChartPainter {
   /// @return
   @override
   MPPointF? getPosition(Entry e, AxisDependency axis) {
-    if (e == null) return null;
-
     List<double?> vals = mGetPositionBuffer;
     vals[0] = e.y;
     vals[1] = e.x;

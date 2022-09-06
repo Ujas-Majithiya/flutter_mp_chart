@@ -321,11 +321,11 @@ abstract class AxisBase extends ComponentBase {
   /// the chart. Use chart.getDefaultValueFormatter() to use the formatter calculated by the chart.
   ///
   /// @param f
-  void setValueFormatter(ValueFormatter f) {
-    if (f == null)
-      _axisValueFormatter = DefaultAxisValueFormatter(_decimals);
-    else
+  void setValueFormatter(ValueFormatter? f) {
+    if (f != null)
       _axisValueFormatter = f;
+    else
+      _axisValueFormatter = DefaultAxisValueFormatter(_decimals);
   }
 
   /// Returns the formatter used for formatting the axis labels.
@@ -381,7 +381,6 @@ abstract class AxisBase extends ComponentBase {
   /// @param spaceLength the length of space in between the pieces
   /// @param phase       offset, in degrees (normally, use 0)
   void enableAxisLineDashedLine(
-
       double lineLength, double spaceLength, double phase) {
     _axisLineDashPathEffect = DashPathEffect(lineLength, spaceLength, phase);
   }
